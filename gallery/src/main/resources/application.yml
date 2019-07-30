@@ -1,0 +1,35 @@
+#
+#spring.application.name=gallery-service
+#
+#server.port=8100
+#
+#eureka.client.service-url.default-zone=http://loacal-host:8761/eureka
+#
+#
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.datasource.url = jdbc:mysql://localhost:3306/gallery
+#spring.datasource.username = root
+#spring.datasource.password = 123456
+#
+#spring.jpa.show-sql = true
+#spring.jpa.hibernate.ddl-auto = update
+spring:
+  application:
+    name: image-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/image
+    username: root
+    password: 123456
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      
+server:
+  port: 8200
+  
+eureka:
+  client:
+    service-url:
+      default-zone: http://local-host:8761/eureka
