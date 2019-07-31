@@ -24,6 +24,10 @@ import com.accenture.springEurekaImage.entities.Image;
 import com.accenture.springEurekaImage.repository.ImageRepository;
 import com.accenture.springEurekaImage.service.ImageService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
+
 @RestController
 @RequestMapping("/")
 public class HomeController {
@@ -54,6 +58,8 @@ public class HomeController {
 	}
 	
 	@GetMapping("/images/{id}")
+	@ApiOperation(value = "Retrieve a specific image")
+    @ApiResponses(value = @ApiResponse(code = 200, message = "Successful", response = Image.class))
 	public List<Image> getImagesByGallery(@PathVariable Long id) {
 		
 		List<Image> images = imageService.findByGalleryId(id);
@@ -61,6 +67,7 @@ public class HomeController {
 	}	
 	
 	@PutMapping("/changeName/{id_img}")
+	@ApiOperation(value = "Change image name")
 	public ResponseEntity<Object> putChangeName(@PathVariable ("id_img") Long id_img, @RequestBody Image img ) throws JSONException{
 		
 		JSONObject putJson = new JSONObject();
@@ -89,6 +96,7 @@ public class HomeController {
 	
 
 	@DeleteMapping("delete/{id}")
+	@ApiOperation(value = "Remove image from db")
 	public ResponseEntity<Object> delete(@PathVariable ("id") Long id) throws JSONException{
 		JSONObject imgJSON = new JSONObject();
 		Image img = imageService.findById(id);  
