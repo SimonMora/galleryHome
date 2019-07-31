@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.springEurekaImage.entities.Images;
 import com.accenture.springEurekaImage.repository.ImageRepository;
+import com.accenture.springEurekaImage.service.ImageService;
 
 @RestController
 @RequestMapping("/")
@@ -27,12 +28,12 @@ public class HomeController {
 	@Autowired
 	private Environment env;
 	@Autowired
-	private ImageRepository imgRepo;
+	private ImageService imageService;
 	
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/images")
 	public ResponseEntity<Object> getImages() throws JSONException {
-		List<Images> images = imgRepo.findAll();
+		List<Images> images = imageService.findAll();
 		JSONObject obj = new JSONObject();
 		JSONArray array = new JSONArray();
 		JSONObject json = new JSONObject();
@@ -60,7 +61,7 @@ public class HomeController {
 //	}
 	
 	@PostMapping("/guardar")
-	public ResponseEntity<Object> guardarImagen(@RequestBody Images imagen) throws JSONException{
+	public ResponseEntity<Object> saveImage(@RequestBody Images imagen) throws JSONException{
 
 		Images unaimagen = new Images();
 		JSONObject res= new JSONObject();
@@ -70,7 +71,7 @@ public class HomeController {
 				unaimagen.setTitle(imagen.getTitle());
 				unaimagen.setUrl(imagen.getUrl());
 				unaimagen.setGallery_id(imagen.getGallery_id());
-				imgRepo.save(unaimagen);
+				imageService.save(unaimagen);
 				System.out.println(unaimagen.getTitle());
 				
 				res.put("error", 0);

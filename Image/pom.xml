@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.accenture</groupId>
-	<artifactId>gallery</artifactId>
+	<artifactId>springEurekaImage</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gallery</name>
+	<name>springEurekaImage</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -28,6 +28,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+		
 		 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
@@ -41,6 +42,13 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <scope>runtime</scope>
 		</dependency>
+	
+		<dependency>
+		   <groupId>org.json</groupId>
+		   <artifactId>json</artifactId>
+		   <version>20080701</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -55,11 +63,7 @@
 			<scope>compile</scope>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>
-
+								
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -70,7 +74,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+			    <exclusion>
+			        <groupId>com.vaadin.external.google</groupId>
+			        <artifactId>android-json</artifactId>
+			    </exclusion>
+			</exclusions>
 		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -85,6 +96,8 @@
 		</dependencies>
 	</dependencyManagement>
 
+	
+	
 	<build>
 		<plugins>
 			<plugin>
